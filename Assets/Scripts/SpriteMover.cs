@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpriteMover : MonoBehaviour
 {
-    public Transform tf;
+    private Transform tf;
 
     public float speed = 1.0f;
     // Start is called before the first frame update
@@ -19,24 +19,61 @@ public class SpriteMover : MonoBehaviour
         //Move up if the player presses up
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            //Only Works if shift is held down
+            shiftMove();
         }
         else
         {
-            //Only Works if shift is not held down
+            move();
         }
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            tf.position = tf.position + Vector3.up * Time.deltaTime * speed;
-        }
-        //This works if player is holding down shift or if player is not holding down shift
         if (Input.GetKeyDown(KeyCode.Space))
         {
-        tf.position = new Vector3(0,0,0);
+            tf.position = new Vector3(0, 0, 0);
         }
-        
     }
-    
-        
+
+    void move()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            tf.position += new Vector3(0, speed, 0) * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            tf.position += new Vector3(0, -speed, 0) * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            tf.position += new Vector3(-speed, 0, 0) * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            tf.position += new Vector3(speed, 0, 0) * Time.deltaTime;
+        }
+    }
+
+    void shiftMove()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            tf.position += new Vector3(0, 1, 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            tf.position += new Vector3(0,-1,0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            tf.position += new Vector3(-1,0,0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            tf.position += new Vector3(1,0,0);
+        }
+    }
 }

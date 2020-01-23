@@ -5,35 +5,27 @@ using UnityEngine;
 public class SpriteChanger : MonoBehaviour
 {
     //Declare variables at top
-    private SpriteRenderer SpriteRenderer;
+    private SpriteRenderer spriteRenderer;
     public Color color = Color.green;
 
     // Start is called before the first frame update
     void Start()
     {
-        SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
-        if (SpriteRenderer != null)
+        if (spriteRenderer != null)
         {
-        SpriteRenderer.color = Color.green;
-       
+            spriteRenderer.color = Color.green;
         }
         else
         {
-          Debug.LogError("No Sprite Renderer Attached");  
+            Debug.LogError("No Sprite Renderer Attached");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SpriteRenderer != null)
-        {
-            SpriteRenderer.color = color;
-        }
-        else
-        {
-            Debug.LogError("No Sprite Renderer Attached");
-        }
+
     }
 }
